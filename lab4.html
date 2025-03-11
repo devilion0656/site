@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立体正方体</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .cube {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d; /* 保持3D效果 */
+            transform: rotateX(-45deg) rotateY(45deg); /* 旋转角度 */
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 2px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #000;
+            box-sizing: border-box;
+        }
+
+        .front {
+            transform: translateZ(100px); /* 前面 */
+            background-color: green;
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(-100px); /* 右面 */
+            background-color: purple;
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(100px); /* 顶面 */
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="face front"></div>
+        <div class="face right"></div>
+        <div class="face top"></div>
+    </div>
+</body>
+</html>
