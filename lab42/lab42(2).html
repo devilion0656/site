@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        /* 椭圆样式 */
+        .ellipse {
+            width: 200px;
+            height: 100px;
+            background: radial-gradient(circle, red, yellow, green);
+            border-radius: 50%;
+            animation: gradientAnimation 5s infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background: radial-gradient(circle, red, yellow, green);
+            }
+
+            50% {
+                background: radial-gradient(circle, green, red, yellow);
+            }
+
+            100% {
+                background: radial-gradient(circle, yellow, green, red);
+            }
+        }
+
+        /* 照片样式 */
+        .profile-picture {
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 椭圆 -->
+    <div class="ellipse"></div>
+
+    <h1>个人简历</h1>
+
+    <table>
+        <tr>
+            <th>照片</th>
+            <td colspan="3">
+                <!-- 添加照片 -->
+                <img src="彭于晏.jpg" alt="个人照片" class="profile-picture">
+            </td>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td>简小丽</td>
+            <th>年龄</th>
+            <td>26</td>
+        </tr>
+        <tr>
+            <th>性别</th>
+            <td>女</td>
+            <th>地址</th>
+            <td>湖南长沙高新区</td>
+        </tr>
+        <tr>
+            <th>电话</th>
+            <td>135-0000-0000</td>
+            <th>婚姻状况</th>
+            <td>已婚</td>
+        </tr>
+    </table>
+
+    <h2>求职意向</h2>
+    <p>区域经理</p>
+
+    <h2>工作经历</h2>
+    <table>
+        <tr>
+            <th>职位</th>
+            <th>工作内容</th>
+        </tr>
+        <tr>
+            <td>社区服务站慢病管理员</td>
+            <td>
+                <ul>
+                    <li>负责为客户进行体检并解读体检结果。</li>
+                    <li>评估客户的健康状况和所患疾病危险性；进行健康咨询与指导。</li>
+                    <li>对患者进行糖尿病、高血压检测工作。</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>药店店员（工作经验四年）</td>
+            <td>
+                <ul>
+                    <li>负责接待顾客的咨询，了解顾客的需求并达成销售。</li>
+                    <li>负责做好药品销售记录、盘点、账目核对等工作，按规定完成各项销售统计工作。</li>
+                    <li>完成商品的安装验收、上架陈列摆放、补货、退货、防损等日常营业工作。</li>
+                    <li>做好所有贵区域的卫生清洁工作。</li>
+                    <li>了解公司下达的销售任务指标，进行销售任务的分解。</li>
+                    <li>对商品的价格、产地等做了如指掌。</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <h2>教育经历</h2>
+    <p>中专学历（本人学历不高，正在就读成人高考）</p>
+
+    <h2>社会关系</h2>
+    <ul>
+        <li>家人从事教育行业老师和学校领导等工作。</li>
+        <li>本人对象有很多老板是朋友关系，具有一定的社会关系。</li>
+    </ul>
+
+    <h2>自我评价</h2>
+    <ul>
+        <li>对于市场具有一定的观察诊断能力，了解当地市场人流量、竞争情况、消费喜好、消费者分布情况。</li>
+        <li>对于产品、人员、价格等具有一定的管理能力。</li>
+        <li>对于营销知识及品牌知识等具有一定的了解。</li>
+    </ul>
+</body>
+
+</html>
