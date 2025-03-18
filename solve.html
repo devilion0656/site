@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadratic Equation Solver</title>
+</head>
+
+<body>
+    <script>
+        // Prompt user for coefficients a, b, and c
+        let a = parseFloat(prompt("Enter the coefficient a:"));
+        let b = parseFloat(prompt("Enter the coefficient b:"));
+        let c = parseFloat(prompt("Enter the coefficient c:"));
+
+        // Calculate delta
+        let delta = b * b - 4 * a * c;
+
+        // Calculate the roots
+        let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+        // Show the results in an alert
+        alert(`The roots of the quadratic equation are: x1 = ${x1}, x2 = ${x2}`);
+
+        // Log the results to the console
+        console.log(`The roots of the quadratic equation are: x1 = ${x1}, x2 = ${x2}`);
+    </script>
+</body>
+
+</html>
+    
