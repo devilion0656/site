@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@keyframes fly {
+    from { top: 400px; }
+    to { top: 0px; }
+}
+.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    animation: fly 5s linear infinite;
+}
+</style>
+</head>
+<body>
+<script>
+// 定义一个函数用于生成随机颜色
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// 定义一个函数用于生成多个小球
+function createBalls(num) {
+    for (let i = 0; i < num; i++) {
+        // 创建小球元素
+        let ball = document.createElement('div');
+        ball.className = 'circle';
+
+        // 设置随机颜色
+        ball.style.backgroundColor = getRandomColor();
+
+        // 设置随机水平位置
+        ball.style.left = Math.random() * window.innerWidth + 'px';
+
+        // 将小球添加到页面中
+        document.body.appendChild(ball);
+    }
+}
+
+// 页面加载完成后调用函数生成10个小球
+window.onload = function() {
+    createBalls(10);
+};
+</script>
+</body>
+</html>
