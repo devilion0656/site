@@ -1,0 +1,54 @@
+function allprimes(n)
+{
+    let list = [];
+    for(let k = 2;k < n;K ++)
+    {
+        let isprime = true;
+        for(let p of list)
+        {
+            if(p >= Math.sqrt(k))
+                break;
+            if(k % p === 0)
+            {
+                isprime = false;
+                break;
+            }
+        }
+        if (isprime)
+        {
+            console.log(k);
+            list.push(k);
+        }
+    }
+}
+
+var obj={ 
+    id:"D1000454",
+    age:16,
+    aset:function(i,a){obj.id=i;obj.age = a;}
+};
+
+var another = Object.create(student);
+another.set("D234324",20);
+another.prototype.log =
+function(){console.log(another.id + another.age);}
+
+another.log();
+
+what is an object?
+An object is an instance of class
+
+function Student(id,name,age)
+{
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.set = function(i,a)
+    {this.id = i;this.age = a;}
+}
+let student = new Student();
+let s1 = new Student(123)；
+s1.name = "John Smith";
+s1.age = 12;
+s1.set(213,23);
+s2 = new Student(12,null,34);
