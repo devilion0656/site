@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @keyframes fly {
+            from {
+                top: 100vh;
+                opacity: 1;
+            }
+
+            to {
+                top: -100px;
+                opacity: 0;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+            background-color: #87CEEB;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function Balloon(id, color, diameter, speed) {
+            this.id = id;
+            this.color = color;
+            this.diameter = diameter;
+            this.speed = speed;
+
+            this.make = function () {
+                let dv = document.createElement("div");
+                dv.id = 'b' + this.id;
+                dv.style.cssText = "width:" + this.diameter + "px; height:" + this.diameter +
+                    "px; border-radius:" + (this.diameter / 2) + "px; " +
+                    "background-color:" + this.color + "; position:absolute; " +
+                    "left:" + (Math.random() * window.innerWidth) + "px; " +
+                    "top:100vh;";
+                document.body.appendChild(dv);
+            }
+
+            this.rise = function () {
+                let dv = document.getElementById('b' + this.id);
+                dv.style.animationName = "fly";
+                dv.style.animationDuration = (1000 / this.speed) + 's'; // 更快的速度
+                dv.style.animationTimingFunction = "linear";
+                dv.style.animationFillMode = "forwards";
+            }
+        }
+
+        const balloonCount = Math.floor(window.innerWidth / 30);
+
+        for (let i = 0; i < balloonCount; i++) {
+            let r = Math.floor(Math.random() * 16777215).toString(16);
+            let s = Math.random() * 10 + 10;
+            let w = Math.random() * 50 + 30;
+            let b = new Balloon(i, '#' + r.padStart(6, '0'), w, s);
+            b.make();
+            b.rise();
+        }
+
+        setInterval(() => {
+            let r = Math.floor(Math.random() * 16777215).toString(16);
+            let s = Math.random() * 10 + 5;
+            let w = Math.random() * 50 + 30;
+            let b = new Balloon(Date.now(), '#' + r.padStart(6, '0'), w, s);
+            b.make();
+            b.rise();
+        }, 300);
+    </script>
+</body>
+
+</html>
