@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Animation</title>
+    <style>
+        @keyframes fly {
+            from {
+                top: 100vh;
+            }
+
+            to {
+                top: -100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        class Balloon {
+            constructor(id, color, diameter, speed) {
+                this.id = id;
+                this.color = color;
+                this.diameter = diameter;
+                this.speed = speed;
+            }
+
+            make() {
+                let dv = document.createElement("div");
+                dv.id = `b${this.id}`;
+                dv.style.cssText = `width:${this.diameter}px; height:${this.diameter}px; border-radius:${this.diameter / 2}px; background-color:${this.color}; position:absolute; left:${Math.random() * window.innerWidth}px; top:100vh;`;
+                document.body.appendChild(dv);
+            }
+
+            rise() {
+                let dv = document.getElementById(`b${this.id}`);
+                dv.style.animationName = "fly";
+                dv.style.animationDuration = (1000 / this.speed) + 's';
+                dv.style.animationTimingFunction = "linear";
+                dv.style.animationFillMode = "forwards";
+            }
+        }
+
+        function init() {
+            const numBalloons = Math.floor(window.innerWidth / 100);
+            for (let i = 0; i < numBalloons; i++) {
+                const balloon = new Balloon(i, getRandomColor(), getRandomDiameter(), getRandomSpeed());
+                balloon.make();
+                balloon.rise();
+            }
+
+            setInterval(() => {
+                const id = Math.floor(Math.random() * 1000);
+                const balloon = new Balloon(id, getRandomColor(), getRandomDiameter(), getRandomSpeed());
+                balloon.make();
+                balloon.rise();
+            }, 300);
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function getRandomDiameter() {
+            return Math.floor(Math.random() * 50) + 20;
+        }
+
+        function getRandomSpeed() {
+            return Math.floor(Math.random() * 5) + 1;
+        }
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>
+    
