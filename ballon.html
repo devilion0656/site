@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>气球动画</title>
+    <style>
+        canvas {
+            border: 1px solid #000;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="balloonCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('balloonCanvas');
+        const ctx = canvas.getContext('2d');
+        const colors = ['red', 'orange', 'yellow', 'green', 'black', 'blue', 'purple'];
+        const POP_HEIGHT = canvas.height * 0.3; // 爆破高度设为画布高度的30%
+
+        // 初始化气球数组
+        let balloons = [];
+        for (let i = 0; i < 10; i++) {
+            balloons.push(createBalloon());
+        }
+
+        function createBalloon() {
+            return {
+                x: Math.random() * canvas.width,
+                y: canvas.height + 50, // 初始位置在画布下方
+                startY: canvas.height + 50,
+                baseRadius: 20 + Math.random() * 10, // 基础半径20-30
+                scaleFactor: 0.03, // 半径增长系数
+                speed: 1 + Math.random() * 3,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                isPopped: false,
+                popping: false,
+                popProgress: 0
+            };
+        }
+
+        function drawBalloon(balloon) {
+            if (balloon.popping) return; // 爆破时不绘制
+
+            // 绘制气球主体
+            ctx.beginPath();
+            ctx.ellipse(balloon.x, balloon.y, balloon.radius, balloon.radius * 1.2, 0, 0, Math.PI * 2);
+            ctx.fillStyle = balloon.color;
+            ctx.fill();
+            
+            // 绘制气球系绳
+            ctx.beginPath();
+            ctx.moveTo(balloon.x, balloon.y + balloon.radius * 1.2);
+            ctx.lineTo(balloon.x + 10, balloon.y + balloon.radius * 1.2 + 40);
+            ctx.lineTo(balloon.x - 10, balloon.y + balloon.radius * 1.2 + 60);
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let hasPopped = false; // 本帧是否已处理爆破
+
+            balloons.forEach(balloon => {
+                if (balloon.popping) {
+                    balloon.popProgress++;
+                    balloon.radius *= 0.85; // 爆破时缩小
+                    if (balloon.popProgress > 8) { // 缩小到一定程度后移除
+                        balloon.shouldRemove = true;
+                    }
+                } else if (balloon.y < POP_HEIGHT && !balloon.isPopped && !hasPopped) {
+                    // 到达爆破高度且未处理过本帧
+                    balloon.isPopped = true;
+                    balloon.popping = true;
+                    hasPopped = true;
+                } else {
+                    // 正常上升逻辑
+                    balloon.y -= balloon.speed;
+                    // 根据高度计算半径
+                    balloon.radius = balloon.baseRadius + (balloon.startY - balloon.y) * balloon.scaleFactor;
+                }
+
+                // 飞出画布顶部后重置
+                if (balloon.y < -balloon.radius * 2 && !balloon.popping) {
+                    Object.assign(balloon, createBalloon());
+                }
+
+                drawBalloon(balloon);
+            });
+
+            // 移除已爆破的气球并补充新气球
+            balloons = balloons.filter(b => !b.shouldRemove);
+            while (balloons.length < 10) {
+                balloons.push(createBalloon());
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
