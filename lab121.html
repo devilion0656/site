@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Solar System Simulation</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    table th {
+      cursor: pointer; /* 提示列可点击排序 */
+    }
+
+    table tr:hover {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="solar-system"></div> <!-- 太阳系模拟的容器 -->
+  <button id="show-table-btn">Show Table</button> <!-- 用于触发显示表格的按钮，也可通过点击页面触发 -->
+  <div id="table-container"></div> <!-- 表格容器 -->
+
+  <script>
+    // 假设已经有一个函数可以获取太阳系天体的数据，这里简单模拟数据结构
+    const solarSystemObjects = [
+      { name: "Sun", mass: 1.989e30, orbitRadius: 0, color: "yellow", diameter: 1392700 },
+      { name: "Mercury", mass: 3.3011e23, orbitRadius: 57909227, color: "gray", diameter: 4880 },
+      // 其他天体数据...
+    ];
+
+    // 点击页面或按钮触发显示表格
+    const tableContainer = document.getElementById('table-container');
+    const showTableBtn = document.getElementById('show-table-btn');
+
+    showTableBtn.addEventListener('click', displayTable);
+    document.body.addEventListener('click', displayTable);
+
+    function displayTable() {
+      const table = document.createElement('table');
+      const headers = ['Name', 'Mass', 'Orbit Radius', 'Color', 'Diameter'];
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      solarSystemObjects.forEach(object => {
+        const row = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const massCell = document.createElement('td');
+        const orbitRadiusCell = document.createElement('td');
+        const colorCell = document.createElement('td');
+        const diameterCell = document.createElement('td');
+
+        nameCell.textContent = object.name;
+        massCell.textContent = object.mass;
+        orbitRadiusCell.textContent = object.orbitRadius;
+        colorCell.textContent = object.color;
+        diameterCell.textContent = object.diameter;
+
+        row.appendChild(nameCell);
+        row.appendChild(massCell);
+        row.appendChild(orbitRadiusCell);
+        row.appendChild(colorCell);
+        row.appendChild(diameterCell);
+
+        tbody.appendChild(row);
+      });
+      table.appendChild(tbody);
+
+      // 实现表格列排序功能（简单示例，以第一列（名称）为例）
+      headers.forEach((header, index) => {
+        const th = thead.querySelector(`th:nth-child(${index + 1})`);
+        th.addEventListener('click', () => {
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          rows.sort((a, b) => {
+            const keyA = a.cells[index].textContent;
+            const keyB = b.cells[index].textContent;
+            return keyA.localeCompare(keyB);
+          });
+          rows.forEach(row => tbody.appendChild(row));
+        });
+      });
+
+      tableContainer.innerHTML = '';
+      tableContainer.appendChild(table);
+    }
+  </script>
+</body>
+
+</html>
