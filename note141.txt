@@ -1,0 +1,22 @@
+(1)open a web page
+(2)following task
+For synchronous comm,
+Task 2 will not get started at all before the task one completes
+Open web page in JS:
+let page = window.open(url, targetWindow, ways)
+ways: geometric properties of the opened window and style
+targetWindow: "_self", "_blank", "anyExistingname"
+asynchronous communication
+: two parties involving in communication, don’t have to present at the same time.
+for instance, regular letter, emails, leaving a message
+A small timeout, few seconds
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+var y = xmlhttp.responseText;
+}
+} // call back function
+xmlhttp.send(url);
+modern asynchronous communication using Promise
+async function openpage(url)
+async function testUrl(i)
