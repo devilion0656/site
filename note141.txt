@@ -1,0 +1,27 @@
+(1)open a web page
+(2)following task
+for synchronous comm,
+task 2 will not get started at all
+before the task one completes
+
+A small timeout, few secs
+
+open web page in JS:
+let page = window.open(url,targetWindow,ways)
+
+ways:geometric properties of the opened window and style
+targetWindow:"_self","_blank","anyExitingname" 
+
+
+asynchronous communication
+: two parties involoving in communication 
+dont have to present at the same time 
+for instance, regular letter, emails, leaving a message
+
+
+(1)open a web page
+(2)following task
+
+take 2 gets started right away after sending the request 
+
+ajax; technology before 2010
